@@ -26,7 +26,7 @@
 | OIDC | 已支持 | 不支持 | 身份验证 |
 | 公网访问 | 已支持 | 必须 | 接受Github身份验证请求 |
 | 账户同步范围 | 可创建单独的Azure AD或使用现有Azure AD | 将企业内部账户同步到Github（仅同步账户，密码无需同步）| 建议优先考虑Azure AD 方案 |
-| 账户同步方式 | 基于用户或基于组（基于组的同步，需要Azure AD P1许可） | 基于用户，基于组同步需IDP提供商提供支持 | 基于组同步，组可以映射到Github Teams中，无需再将Github中将用户添加到组织中 |
+| 账户同步方式 | 基于用户或基于组（基于组的同步，需要Azure AD P1许可） | 基于用户，基于组同步需IDP提供商提供支持 | 基于组同步，在Azure AD中将用户添加到组后，会自动同步到Github Team中，无需再在Github中将用户添加到Team中 |
 | 配置方式 | 内置了对Github的集成，配置简单，无需开发 | 需自建IDP提供商配合调试，可能需要二次开发 | 自建IDP 配置较为复杂，需IDP开发商积极配合 |
 | 配置时间 | 小于1小时 | 需自建IDP提供商配合调试，需要评估 | 建议根据实际情况选择方案 |
 
@@ -38,8 +38,9 @@
 2. 分别在Github和Azure AD中，配置OIDC/SAML和SCIM集成，**在配置需要Github管理员账户名和密码，Azure AD全局管理员和密码，可使用临时全局管理员和密码**；_---参考4.2 基于Azure AD 配置身份验证集成_
 3. 在Github上启用Copilot，绑定到Azure订阅进行计费，**配置过程中需要Azure 订阅ID和Azure订阅管理员和密码**；
 4. 如果是新的Azure AD，需创建Azure AD用户（可以通过导入CSV文件，批量创建账户），把需要同步的Azure AD 用户或组分配到Github Enterprise Management User应用中，**配置过程中需要 Global Administrator, 或Cloud Application Administrator, 或Application Administrator管理员**；_---参考4.2 基于Azure AD 配置身份验证集成_
-5. 如果基于用户同步，用户同步到Github中，需要在Github中将用户添加到启用了Copilot的组织中，**配置过程中需要Github管理员账户名和密码**；
-5. 用户安装IDE插件，使用新用户登录
+5. 如果基于用户同步，用户同步到Github中，需要在Github中将用户添加到启用了Copilot Team中，**配置过程中需要Github管理员账户名和密码**；
+6. 基于组同步，在Azure AD中将用户添加到组后，会自动同步到Github Team中，无需执行第5步操作；_---参考4.2 基于Azure AD 配置身份验证集成_
+7. 用户安装IDE插件，使用新用户登录
 
 
 ## 4.2 基于Azure AD 配置身份验证集成
