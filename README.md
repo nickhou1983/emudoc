@@ -1,6 +1,7 @@
 # 1. 先决条件：
 * Global Azure AD：用于同步账户到Github， 并提供身份验证；
-* Global Azure AD 全局管理员账户：用于配置单点登录
+* Global Azure AD 全局管理员账户：用于配置单点登录;
+* Azure AD User Admin 和 Cloud Application Admin：用于创建用户和将用户分配到Github Enterprise Manager User App；
 * Global Azure 订阅 ID：用于绑定到Github计费； 
 * Azure 订阅管理员：用于配置Github 绑定Azure订阅；
 
