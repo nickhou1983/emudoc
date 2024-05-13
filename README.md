@@ -1,9 +1,9 @@
 # 1. 先决条件：
-* Global Azure AD：用于同步账户到Github， 并提供身份验证；
-* Global Azure AD 全局管理员账户：用于配置单点登录;
-* Azure AD User Admin 和 Cloud Application Admin：用于创建用户和将用户分配到Github Enterprise Manager User App；
-* Global Azure 订阅 ID：用于绑定到Github计费； 
-* Azure 订阅管理员：用于配置Github 绑定Azure订阅；
+* 现有Global Azure AD 或新建专用于存储Github 用户名和密码的Azure AD：用于同步账户到Github， 并提供身份验证；
+* Global Azure AD 全局管理员账户：用于配置单点登录; --- _配置过程中使用一次_
+* Azure AD User Admin 和 Cloud Application Admin：用于创建用户和将用户分配到Github Enterprise Manager User App；--- _管理账户时使用_
+* Global Azure 订阅 ID：用于绑定到Github计费；--- _配置过程中使用一次_ 
+* Azure 订阅管理员：用于配置Github 绑定Azure订阅；--- _配置过程中使用一次_ 
 
 # 2. Github 创建EMU企业
 1.	微软售前团队会负责和Github沟通，申请启用EMU企业组织；
