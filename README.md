@@ -56,7 +56,8 @@ https://docs.github.com/zh/enterprise-cloud@latest/admin/managing-accounts-and-r
 5. 如果基于组同步，组可以映射到Github Teams中，用户会自动同步到组织中，无需再将Github中将用户添加到组织中，参考：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/provisioning-user-accounts-for-enterprise-managed-users/managing-team-memberships-with-identity-provider-groups
 6. 参考的API：
 * 创建用户：https://learn.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0&preserve-view=true
-* 用户或组分配到应用：https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/assign-user-or-group-access-portal?pivots=ms-graph
+* 自动与配：用户或组分配到应用：https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/assign-user-or-group-access-portal?pivots=ms-graph
+* 按需预配：
 
 
 ## 4.3 基于自建IDP 配置身份验证集成
@@ -91,6 +92,10 @@ https://docs.github.com/zh/billing/managing-billing-for-your-github-account/conn
 
 4.	绑定订阅后，需在企业级别启用Copilot，参考如下文档：
 https://docs.github.com/zh/enterprise-cloud@latest/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-copilot-in-your-enterprise#enforcing-a-policy-to-manage-the-use-of-github-copilot-business-in-your-enterprise
+
+# 6. Github Copilot 使用
+``
+# 7. FAQ
 
 
 
