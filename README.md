@@ -57,6 +57,7 @@ https://docs.github.com/zh/enterprise-cloud@latest/admin/managing-accounts-and-r
 
 参考的API：
 * 创建用于调用Graph API的应用：https://learn.microsoft.com/en-us/graph/auth-register-app-v2?view=graph-rest-1.0
+![alt text](1716366737303.png)
 * 为应用授予访问Graph API管理用户和应用的权限，如图配置：
 ![alt text](1716366645817.png)
 * 创建用户：https://learn.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0&preserve-view=true
