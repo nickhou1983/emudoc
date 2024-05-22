@@ -54,10 +54,14 @@
 4. 如果基于用户同步，用户同步到Github中，需要在Github中将用户添加到启用了Copilot的组织中，**配置过程中需要Github管理员账户名和密码**，参考：
 https://docs.github.com/zh/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-organization-members-in-your-enterprise
 5. 如果基于组同步，组可以映射到Github Teams中，用户会自动同步到组织中，无需再将Github中将用户添加到组织中，参考：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/provisioning-user-accounts-for-enterprise-managed-users/managing-team-memberships-with-identity-provider-groups
-6. 参考的API：
+
+参考的API：
+* 创建用于调用Graph API的应用：https://learn.microsoft.com/en-us/graph/auth-register-app-v2?view=graph-rest-1.0
+* 为应用授予访问Graph API管理用户和应用的权限，如图配置：
+![alt text](1716366645817.png)
 * 创建用户：https://learn.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0&preserve-view=true
 * 自动与配：用户或组分配到应用：https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/assign-user-or-group-access-portal?pivots=ms-graph
-* 按需预配：
+* 按需预配：https://learn.microsoft.com/en-us/graph/api/synchronization-synchronizationjob-provisionondemand?view=graph-rest-1.0&tabs=http
 
 
 ## 4.3 基于自建IDP 配置身份验证集成
