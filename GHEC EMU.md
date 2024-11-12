@@ -46,7 +46,7 @@
 7. 用户安装IDE插件，使用新用户登录
 
 
-## 4.2 基于Azure AD 配置身份验证集成
+## 4.2 基于Azure AD 配置OIDC 身份验证集成
 1. 配置OIDC 集成：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/using-enterprise-managed-users-for-iam/configuring-oidc-for-enterprise-managed-users
 2. 配置SCIM 集成：
 * 在Github中生成账户同步的票据令牌：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/provisioning-user-accounts-for-enterprise-managed-users/configuring-scim-provisioning-for-enterprise-managed-users#%E5%88%9B%E5%BB%BA-personal-access-token
@@ -55,6 +55,11 @@
 4. 如果基于用户同步，用户同步到Github中，需要在Github中将用户添加到启用了Copilot的组织中，**配置过程中需要Github管理员账户名和密码**，参考：
 https://docs.github.com/zh/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-organization-members-in-your-enterprise
 5. 如果基于组同步，组可以映射到Github Teams中，用户会自动同步到组织中，无需再将Github中将用户添加到组织中，参考：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/provisioning-user-accounts-for-enterprise-managed-users/managing-team-memberships-with-identity-provider-groups
+
+## 4.3 基于Azure AD 配置SAML 身份验证集成
+1. 配置SAML 集成：https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-tutorial
+2. 配置SCIM 集成：https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-provisioning-tutorial
+
 
 参考的API：
 * 创建用于调用Graph API的应用：https://learn.microsoft.com/en-us/graph/auth-register-app-v2?view=graph-rest-1.0
