@@ -7,13 +7,11 @@
 
 # 2. Github 创建EMU企业
 1.	通过如下链接，申请启用EMU企业：https://github.com/account/enterprises/new?users_type=enterprise_managed
-2.	客户需提供shortcode （3-8个字符，该代码将用作企业成员用户名的后缀），和管理员邮箱；
+2.	需提供shortcode （3-8个字符，该代码将用作企业成员用户名的后缀），和管理员邮箱；
+![alt text](image-9.png)
 
-
-
-# 3. 配置EMU 管理员临时密码
-1.	Github 会为EMU企业账户生成一个临时配置管理员，名称为：shortcode_admin
-2.	为临时配置管理员创建密码（临时的管理员账户为shortcode_admin）；
+3.	为临时配置管理员创建密码（临时的管理员账户为shortcode_admin）；
+![alt text](1731398554172.jpg)
 * 临时配置管理账户主要用于配置EMU企业组织和AAD集成；
 * 建议浏览器隐私模式来为临时管理员账户重置密码和登录；
 * 配置了和Azure AD 账户同步后，临时配置管理账户密码将会失效。请确保下载了临时配置管理员的恢复密钥：
@@ -23,9 +21,9 @@
 
 | 功能需求 | Global Azure AD | 自建IDP | 说明 |
 | --- | --- | --- | --- |
-| SAML 2.0 | 已支持 | 必须 | 身份验证 |
-| SCIM 2.0 | 已支持 | 必须 | 账户同步 |
-| OIDC | 已支持 | 不支持 | 身份验证 |
+| SAML 2.0 | 已支持 | 必须 | 实现身份验证，不支持条件访问，无法实现IP地址白名单功能 |
+| SCIM 2.0 | 已支持 | 必须 | 实现账户同步 |
+| OIDC | 已支持 | 不支持 | 实现身份验证，支持条件访问，可以基于IP地址实现白名单功能 |
 | 公网访问 | 已支持 | 必须 | 接受Github身份验证请求 |
 | 账户同步范围 | 指定Azure AD 中的用户或组 | 指定IDP中的用户或组（组同步需IDP支持）| 建议优先考虑Azure AD 方案 |
 | 账户同步方式 | 基于用户或基于组（基于组的同步，需要Azure AD P1许可） | 基于用户，基于组同步需IDP提供商提供支持 | * 基于用户同步，需要在AAD 中手动将用户分配到Github Enterprise Manageed User App中；* 基于组同步，在Azure AD中将用户添加到组后，会自动同步到Github Team中，无需再在Github中将用户添加到Team中 |
@@ -38,16 +36,18 @@
 
 1. 在Azure上创建专用于Github的Global Azure AD或使用现有Azure AD，建议创建Azure AD临时全局管理员，**在配置中需要Azure AD全局管理员账户和密码**；
 2. 分别在Github和Azure AD中，配置OIDC/SAML和SCIM集成，**在配置需要Github管理员账户名和密码，Azure AD全局管理员和密码，可使用临时全局管理员和密码**；_---参考4.2 基于Azure AD 配置身份验证集成_
-3. 在Github上启用Copilot，绑定到Azure订阅进行计费，**配置过程中需要Azure 订阅ID和Azure订阅管理员和密码**；_---参考5. 启用Github Copilot_
+3. 在Github 绑定Azure 订阅计费上启用Copilot，绑定到Azure订阅进行计费**配置过程中需要Azure 订阅ID和Azure订阅管理员和密码**；_---参考5. 启用Github Copilot_
 4. 如果是新的Azure AD，需首先创建Azure AD用户（可以通过导入CSV文件，批量创建账户）。
 如果用户已经存储在Azure AD中，则直接把需要同步的Azure AD 用户或组分配到Github Enterprise Management User应用中，**配置过程中需要 Global Administrator, 或Cloud Application Administrator, 或Application Administrator管理员**；_---参考4.4 同步用户_  
 5. 如果基于用户同步，用户同步到Github中，需要在Github中将用户添加到启用了Copilot Team中，**配置过程中需要Github管理员账户名和密码**；_---参考4.4 同步用户_
 6. 基于组同步，在Azure AD中将用户添加到组后，会自动同步到Github Team中，无需执行第5步操作；_---参考4.2 基于Azure AD 配置身份验证集成_
 7. 用户安装IDE插件，使用新用户登录
 
+## 单个Azure AD 允许和多个Github Enterprise 集成，但只有一个Github Enterprise 可以配置为OIDC身份验证，其他Github Enterprise 需要配置SAML身份验证。
 
 ## 4.2 基于Azure AD 配置OIDC 身份验证集成
-1. 配置OIDC 集成：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/using-enterprise-managed-users-for-iam/configuring-oidc-for-enterprise-managed-users
+1. 配置OIDC 集成：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/using-enterprise-managed-users-for-iam/configuring-oidc-for-enterprise-managed-users，在Github中启用OIDC集成，会自动创建OIDC应用；
+![alt text](1731399499204.png)
 2. 配置SCIM 集成：
 * 在Github中生成账户同步的票据令牌：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/provisioning-user-accounts-for-enterprise-managed-users/configuring-scim-provisioning-for-enterprise-managed-users#%E5%88%9B%E5%BB%BA-personal-access-token
 * 在Azure AD配置SCIM：https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/github-enterprise-managed-user-oidc-provisioning-tutorial
@@ -57,7 +57,8 @@ https://docs.github.com/zh/enterprise-cloud@latest/admin/managing-accounts-and-r
 5. 如果基于组同步，组可以映射到Github Teams中，用户会自动同步到组织中，无需再将Github中将用户添加到组织中，参考：https://docs.github.com/zh/enterprise-cloud@latest/admin/identity-and-access-management/provisioning-user-accounts-for-enterprise-managed-users/managing-team-memberships-with-identity-provider-groups
 
 ## 4.3 基于Azure AD 配置SAML 身份验证集成
-1. 配置SAML 集成：https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-tutorial
+1. 配置SAML 集成：https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-tutorial，在Github中启用SAML，需要手动创建SAML应用；
+![alt text](1731399552224.png)
 2. 配置SCIM 集成：https://learn.microsoft.com/en-us/entra/identity/saas-apps/github-enterprise-managed-user-provisioning-tutorial
 
 
